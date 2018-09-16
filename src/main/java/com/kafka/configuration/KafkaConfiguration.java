@@ -87,7 +87,7 @@ public class KafkaConfiguration implements InitializingBean {
 	KafkaConsumer<String, String> kafkaConsumer(){
 		Map<String, Object> config = config("consumer.properties", consumerFileConfig);
 		log.debug("kafka consumer properties loaded {}", config);
-		if (StringUtils.isEmpty(consumerGroupId)) {
+		if (!StringUtils.isEmpty(consumerGroupId)) {
 			config.put("group.id", consumerGroupId);
 		} else if (!config.containsKey("group.id")) {
 			log.warn("please set unique group.id for consumer in properties");
